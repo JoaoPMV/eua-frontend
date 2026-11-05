@@ -1,0 +1,101 @@
+.image-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 60vh;
+}
+
+.background-image {
+  width: 60%;
+  height: 60vh;
+  display: block;
+  object-fit: cover;
+
+  -webkit-mask-image:
+    linear-gradient(to right, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(to right, transparent, black 15%, black 85%, transparent),
+    linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+
+  mask-composite: intersect;
+}
+
+.speech-bubble {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 15%;
+  left: 28%;
+  width: 18vw;
+  height: 30%;
+  background: white;
+  padding: 20px 45px 20px 20px;
+  border: 1px solid grey;
+  border-radius: 15px;
+}
+
+.speech-bubble p {
+  text-align: start;
+  line-height: 1.8;
+}
+
+.audio-button {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.audio-button:hover {
+  background: #1d4ed8;
+}
+
+.audio-icon {
+  width: 15px;
+  height: 15px;
+  stroke-width: 1.8;
+}
+
+/* ===== Responsividade mobile ===== */
+@media (max-width: 768px) {
+  .background-image {
+    width: 100%;
+  }
+
+  /* Mantém o balão sobre a imagem, no mesmo canto superior esquerdo */
+  .speech-bubble {
+    top: 15%;
+    left: 4%;
+    width: 35%;
+    height: 30%;
+
+    padding: 13px;
+
+    box-sizing: border-box;
+
+  }
+
+  .speech-bubble p {
+    margin: 0;
+    font-size: 0.7rem;
+
+  }
+}

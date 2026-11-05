@@ -1,0 +1,87 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+.reading {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid red;
+  gap: 1rem;
+  padding: 20px;
+}
+
+.description-audio {
+  width: 50%;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+
+.chapter-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.chapter-one {
+  padding: 10px 0;
+}
+
+.description-india {
+  width: 50%;
+  padding: 15px 0;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.words-box {
+  text-align: center;
+  gap: 1rem;
+}
+
+.words-box p {
+  padding: 10px 0;
+}
+
+.words {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.word {
+  display: flex;
+  justify-content: center;
+}
+
+.words-container {
+  display: flex;
+  justify-content: center;
+}
+
+
+.word-hyphen {
+  padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.exercise-number {
+  padding: 5px;
+}
+
+
+.teste {
+  padding: 15px
+}
+
+
+@media (max-width: 768px) {}

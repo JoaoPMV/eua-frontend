@@ -1,0 +1,105 @@
+.words-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+}
+
+/* Title and intro: fluid width instead of a fixed 44rem */
+.vocabulary-title,
+.vocabulary-paragraph {
+  box-sizing: border-box;
+  width: min(44rem, 100%);
+  border-right: 4px solid rgb(193, 193, 35);
+  padding: 0.625rem 1.5rem;
+  text-align: end;
+}
+
+.vocabulary-title {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+}
+
+.vocabulary-paragraph {
+  line-height: 1.8;
+}
+
+/* Exercises */
+.words-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: min(44rem, 100%);
+  margin-top: 1.5rem;
+}
+
+.words {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* One cell size for every word. Adjust --cell to fit your longest word. */
+.words-container {
+  --cell: clamp(1.4rem, 2.5vw, 2.75rem);
+}
+
+/* If a very long word still doesn't fit, it wraps instead of shrinking */
+.word {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.letter-input {
+  flex: 0 0 var(--cell);
+  width: var(--cell);
+  height: var(--cell);
+  box-sizing: border-box;
+  padding: 0;
+  border: 1px solid rgba(128, 128, 128, 0.6);
+  background: transparent;
+  color: inherit;
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-align: center;
+  touch-action: manipulation;
+}
+
+.letter-input:focus-visible {
+  outline: noner;
+  outline-offset: 1px;
+}
+
+.letter-input.correct {
+  border-color: #2e9e5b;
+  background-color: green;
+  color: white;
+}
+
+.word-hyphen {
+  align-self: center;
+  flex: 0 0 auto;
+  padding: 0 0.125rem;
+}
+
+@media (max-width: 480px) {
+  .words-container {
+    padding: 0.75rem;
+  }
+
+  .vocabulary-title,
+  .vocabulary-paragraph {
+    padding: 0.5rem 1rem;
+  }
+
+  .letter-input:focus-visible {
+    outline: 3px solid rgb(193, 193, 35);
+    outline-offset: 1px;
+  }
+
+
+
+}

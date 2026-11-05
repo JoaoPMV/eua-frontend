@@ -1,0 +1,317 @@
+/*
+  Bloco de pronúncia: um "balão de fala" verde-água com botão de play
+  e ondas sonoras. Pensado para repetir em vários blocos do curso.
+*/
+.word-audio-box {
+  --wa-bg: #e3f3ef;
+  --wa-edge: #b4d9d1;
+  --wa-ink: #12403d;
+  --wa-accent: #0f766e;
+  --wa-accent-hover: #0b5f58;
+  --wa-accent-ink: #ffffff;
+  --wa-ring: rgba(15, 118, 110, 0.28);
+  --wa-error: #b91c1c;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.9rem;
+  width: fit-content;
+  min-width: 11rem;
+  max-width: 100%;
+  padding: 0.45rem 1.4rem 0.45rem 0.45rem;
+  background-color: var(--wa-bg);
+  border: 1.5px solid var(--wa-edge);
+  /* o canto inferior esquerdo reto lembra o rabinho de um balão de fala */
+  border-radius: 2rem 2rem 2rem 0.35rem;
+}
+
+@media (hover: hover) {
+  .word-audio-box:hover {
+    background: linear-gradient(135deg, #e3f3ef 0%, #c5e8df 50%, #a7dcd0 100%);
+    border-color: #8fc9bc;
+    cursor: pointer;
+  }
+}
+
+.word-audio-box--playing {
+  border-color: var(--wa-accent);
+}
+
+.pronunciation-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.word-audio {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--wa-accent);
+  color: var(--wa-accent-ink);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.word-audio:hover:not(:disabled) {
+  background-color: var(--wa-accent-hover);
+}
+
+.word-audio:active:not(:disabled) {
+  transform: scale(0.93);
+}
+
+.word-audio:focus-visible {
+  outline: 3px solid var(--wa-accent);
+  outline-offset: 3px;
+}
+
+.word-audio:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Anel que pulsa no botão enquanto o áudio toca */
+.word-audio--playing::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--wa-ring);
+  animation: word-audio-pulse 1.2s ease-out infinite;
+}
+
+.word-audio__icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin: 0;
+  color: inherit;
+}
+
+.word-audio__body {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.9rem;
+  min-width: 0;
+}
+
+.pronunciation-word {
+  margin: 0;
+  min-width: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--wa-ink);
+  overflow-wrap: anywhere;
+}
+
+/* Ondas sonoras: paradas em repouso, animadas durante a reprodução */
+.word-audio__wave {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 3px;
+  height: 22px;
+}
+
+.word-audio__wave i {
+  display: block;
+  width: 4px;
+  height: 100%;
+  border-radius: 2px;
+  background-color: var(--wa-accent);
+  opacity: 0.5;
+  transform: scaleY(0.3);
+  transform-origin: center;
+}
+
+.word-audio__wave i:nth-child(2) {
+  transform: scaleY(0.6);
+}
+
+.word-audio__wave i:nth-child(3) {
+  transform: scaleY(0.9);
+}
+
+.word-audio__wave i:nth-child(4) {
+  transform: scaleY(0.5);
+}
+
+.word-audio__wave i:nth-child(5) {
+  transform: scaleY(0.25);
+}
+
+.word-audio-box--playing .word-audio__wave i {
+  opacity: 1;
+  animation: word-audio-wave 0.9s ease-in-out infinite;
+}
+
+.word-audio-box--playing .word-audio__wave i:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.word-audio-box--playing .word-audio__wave i:nth-child(3) {
+  animation-delay: 0.24s;
+}
+
+.word-audio-box--playing .word-audio__wave i:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+.word-audio-box--playing .word-audio__wave i:nth-child(5) {
+  animation-delay: 0.48s;
+}
+
+/* One message area below the grid: an error never resizes a word box */
+.pronunciation-error {
+  min-height: 1.5rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.5rem;
+  color: var(--wa-error, #b91c1c);
+}
+
+.pronunciation-container {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  max-width: 54rem;
+}
+
+.pronunciation-title {
+  --pt-ink: #1d2740;
+  --pt-mark: #a7e3d9;
+  display: inline-block;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--pt-ink);
+  border-right: 4px solid var(--pt-mark);
+  padding: 20px 30px;
+}
+
+.pronunciation-text {
+  --pt-mark: #a7e3d9;
+  line-height: 1.8;
+  border-right: 4px solid var(--pt-mark);
+  margin: 0;
+  padding: 20px 30px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .pronunciation-title {
+    --pt-ink: #eef1f8;
+    --pt-mark: rgba(94, 234, 212, 0.35);
+  }
+}
+
+@keyframes word-audio-wave {
+
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes word-audio-pulse {
+  from {
+    box-shadow: 0 0 0 0 var(--wa-ring);
+  }
+
+  to {
+    box-shadow: 0 0 0 12px rgba(15, 118, 110, 0);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .word-audio-box {
+    --wa-bg: #143331;
+    --wa-edge: #28544f;
+    --wa-ink: #e4f5f2;
+    --wa-accent: #5eead4;
+    --wa-accent-hover: #8bf1e0;
+    --wa-accent-ink: #06302c;
+    --wa-ring: rgba(94, 234, 212, 0.35);
+    --wa-error: #fca5a5;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .pronunciation-error {
+    --wa-error: #fca5a5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .word-audio--playing::after,
+  .word-audio-box--playing .word-audio__wave i {
+    animation: none;
+  }
+
+  .word-audio-box--playing .word-audio__wave i {
+    transform: scaleY(0.8);
+  }
+}
+
+/* ===== Responsividade mobile ===== */
+@media (max-width: 768px) {
+  .pronunciation-container {
+    padding: 1rem;
+  }
+
+  .pronunciation-title {
+    padding: 12px 16px;
+  }
+
+  .pronunciation-text {
+    padding: 12px 16px;
+  }
+
+  /* as many 10rem columns as fit; fewer columns on narrow phones instead of overflow */
+  .pronunciation-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+    gap: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .word-audio-box {
+    width: 100%;
+    min-width: 0;
+    padding-right: 0.75rem;
+  }
+
+  .pronunciation-word {
+    font-size: 1.05rem;
+  }
+
+  .pronunciation-error {
+    text-align: start;
+  }
+}

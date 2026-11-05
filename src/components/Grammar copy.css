@@ -1,0 +1,217 @@
+.grammar-section {
+  --ppc-ink: #1d2740;
+  --ppc-muted: #5d667a;
+  --ppc-rule: #e2a32f;
+  --ppc-accent: #2563eb;
+  --ppc-surface: #f4f6fb;
+
+  box-sizing: border-box;
+  max-width: 44rem;
+  margin: 2rem auto;
+  padding: 0 1.25rem;
+  color: var(--ppc-ink);
+}
+
+
+.grammar-section__category {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin: 0.5rem 0 1.5rem;
+  padding: 0.65rem 1.2rem;
+  background: linear-gradient(135deg, #6c3ce9, #a855f7);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 8px 8px 8px 2px;
+  box-shadow: 0 4px 0 #4c25a8, 0 8px 18px rgb(108 60 233 / 22%);
+  position: relative;
+}
+
+.grammar-section__category::before {
+  content: "";
+  width: 5px;
+  height: 1.4rem;
+  margin-right: 0.7rem;
+  background: #facc15;
+  border-radius: 3px;
+}
+
+
+.grammar-section-title {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.grammar-section-intro {
+  max-width: 65ch;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.75;
+}
+
+.grammar-section__heading {
+  font-size: 1.25rem;
+  text-wrap: balance;
+}
+
+.grammar-section__example,
+.grammar-section__form dd,
+.grammar-section__formula {
+  overflow-wrap: anywhere;
+}
+
+.grammar-section-formula {
+  margin: 0 0 1rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--ppc-surface);
+  border-left: 4px solid var(--ppc-rule);
+  border-radius: 0.5rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.grammar-section-forms {
+  margin: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.grammar-section-form {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.grammar-section .grammar-section__form dt {
+  font-weight: 600;
+  color: var(--ppc-muted);
+}
+
+.grammar-section .grammar-section__form dd {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.grammar-section .grammar-section__uses {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1rem;
+}
+
+.grammar-section .grammar-section__use,
+.grammar-section .grammar-section__compare-item {
+  padding: 0.25rem 0 0.25rem 1rem;
+  border-left: 3px solid var(--ppc-accent);
+}
+
+.grammar-section .grammar-section__use-title {
+  margin: 0 0 0.25rem;
+  font-weight: 600;
+}
+
+.grammar-section .grammar-section__example {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--ppc-accent);
+}
+
+.grammar-section .grammar-section__translation {
+  margin: 0.15rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ppc-muted);
+}
+
+.grammar-section .grammar-section__compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.grammar-section .grammar-section__differences {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.grammar-section .grammar-section__label {
+  margin: 0 0 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ppc-muted);
+}
+
+.grammar-section .grammar-section__note {
+  margin: 1.5rem 0 0;
+  padding: 0.9rem 1.1rem;
+  background: var(--ppc-surface);
+  border-radius: 0.5rem;
+  line-height: 1.7;
+}
+
+@media (prefers-color-scheme: dark) {
+  .grammar-section {
+    --ppc-ink: #eef1f8;
+    --ppc-muted: #a3adc2;
+    --ppc-accent: #7aa2ff;
+    --ppc-surface: #1b2236;
+  }
+}
+
+@media (max-width: 768px) {
+  .grammar-section {
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+  }
+
+  .grammar-section .grammar-section__intro {
+    font-size: 1rem;
+  }
+
+  .grammar-section .grammar-section__heading {
+    margin: 1.75rem 0 0.5rem;
+    font-size: 1.15rem;
+  }
+
+  .grammar-section .grammar-section__formula {
+    padding: 0.75rem 0.9rem;
+    font-size: 1.05rem;
+  }
+
+  .grammar-section .grammar-section__example {
+    font-size: 1rem;
+  }
+
+  .grammar-section .grammar-section__note {
+    padding: 0.75rem 0.9rem;
+  }
+}
+
+/* Side-by-side comparisons stack once each column gets too narrow */
+@media (max-width: 600px) {
+  .grammar-section .grammar-section__compare {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .grammar-section .grammar-section__differences {
+    gap: 1.75rem;
+  }
+}
+
+/* Label and example stack only on phones; tablets keep two columns */
+@media (max-width: 480px) {
+  .grammar-section .grammar-section__form {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+}
