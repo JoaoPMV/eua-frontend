@@ -3,7 +3,7 @@ import { getPronunciation } from "../services/wordService";
 
 import "./Vocabulary.css";
 
-const VocabularyExercise = ({ chapter }) => {
+const VocabularyExercise = ({ chapter, background, mobileBackground }) => {
   const [words, setWords] = useState([]);
   const [description, setDescription] = useState("");
   const [answers, setAnswers] = useState({});
@@ -72,8 +72,17 @@ const VocabularyExercise = ({ chapter }) => {
     return null;
   };
 
+  // background e mobileBackground recebem o valor CSS completo,
+  // por exemplo: "url('/images/india.jpeg')"
+  const style = {};
+
+  if (background) style["--vocabulary-bg"] = background;
+
+  // Sem imagem mobile, o CSS reaproveita a imagem desktop
+  if (mobileBackground) style["--vocabulary-bg-mobile"] = mobileBackground;
+
   return (
-    <div className="words-container">
+    <div className="vocabulary-container" style={style}>
       <h1 className="vocabulary-title">Vocabulary</h1>
       <p className="vocabulary-paragraph">{description}</p>
       <div className="words-list">
@@ -162,8 +171,15 @@ const VocabularyExercise = ({ chapter }) => {
   );
 };
 
-const Vocabulary = ({ chapter }) => {
-  return <VocabularyExercise key={chapter} chapter={chapter} />;
+const Vocabulary = ({ chapter, background, mobileBackground }) => {
+  return (
+    <VocabularyExercise
+      key={chapter}
+      chapter={chapter}
+      background={background}
+      mobileBackground={mobileBackground}
+    />
+  );
 };
 
 export default Vocabulary;

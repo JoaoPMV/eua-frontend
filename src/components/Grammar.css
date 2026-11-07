@@ -1,4 +1,4 @@
-.grammar-section {
+.grammar-container {
   --ppc-ink: #1d2740;
   --ppc-muted: #5d667a;
   --ppc-rule: #e2a32f;
@@ -6,10 +6,18 @@
   --ppc-surface: #f4f6fb;
 
   box-sizing: border-box;
-  max-width: 44rem;
-  margin: 2rem auto;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 1.25rem;
   color: var(--ppc-ink);
+  background-image: var(--grammar-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 
@@ -45,11 +53,13 @@
   font-size: clamp(1.75rem, 5vw, 2.5rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
+  color: rgb(211, 209, 209);
 }
 
 .auxiliars {
   font-weight: bold;
-  color: rgb(61, 61, 208);
+
+  color: rgb(187, 186, 186);
 }
 
 .grammar-section-intro {
@@ -58,6 +68,7 @@
   font-size: 1.1rem;
   line-height: 1.75;
   text-align: justify;
+  color: white;
 }
 
 .grammar-section-heading {
@@ -70,18 +81,7 @@
   text-wrap: balance;
   margin: 2rem 0 1.25rem;
   padding: 0 0 0.75rem;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.grammar-section-heading::after {
-  content: "";
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 3rem;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  color: white;
 }
 
 .wild-west-button {
@@ -211,7 +211,7 @@
 .teste {
   font-size: 20px;
   font-style: italic;
-  color: darkblue;
+  color: rgb(211, 209, 209);
 }
 
 .grammar-section-forms {
@@ -227,16 +227,18 @@
   align-items: baseline;
 }
 
-.grammar-section .grammar-section__uses {
+.grammar-section__uses {
   margin: 0;
   padding: 0;
   list-style: none;
   display: grid;
 }
 
-.grammar-section .grammar-section-use,
-.grammar-section .grammar-section__compare-item {
+.grammar-section-use,
+.grammar-section__compare-item {
   padding: 0.25rem 0 0.25rem 1rem;
+  color: white;
+
 
 }
 
@@ -261,6 +263,8 @@
   .grammar-section {
     margin: 1.5rem auto;
     padding: 0 1rem;
+    /* se não houver imagem mobile, usa a desktop */
+    background-image: var(--grammar-bg-mobile, var(--grammar-bg, none));
   }
 
   .grammar-section .grammar-section__intro {

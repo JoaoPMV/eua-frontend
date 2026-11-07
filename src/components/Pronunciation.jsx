@@ -255,17 +255,7 @@ const WordAudio = ({ audioData, word, wordIndex }) => {
         </svg>
       </button>
 
-      <div className="word-audio__body">
-        <p className="pronunciation-word">{word}</p>
-
-        <span className="word-audio__wave" aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <i />
-          <i />
-        </span>
-      </div>
+      <p className="pronunciation-word">{word}</p>
 
       {error && (
         <span className="word-audio__error" role="alert">
@@ -276,7 +266,7 @@ const WordAudio = ({ audioData, word, wordIndex }) => {
   );
 };
 
-const PronunciationExercise = ({ chapter }) => {
+const PronunciationExercise = ({ chapter, background, mobileBackground }) => {
   const [loaded, setLoaded] = useState({
     data: null,
     error: "",
@@ -319,15 +309,24 @@ const PronunciationExercise = ({ chapter }) => {
 
   const words = Array.isArray(loaded.data?.words) ? loaded.data.words : [];
 
+  // background e mobileBackground recebem o valor CSS completo,
+  // por exemplo: "url('/images/india.jpeg')"
+  const style = {};
+
+  if (background) style["--pronunciation-bg"] = background;
+
+  // Sem imagem mobile, o CSS reaproveita a imagem desktop
+  if (mobileBackground) style["--pronunciation-bg-mobile"] = mobileBackground;
+
   return (
-    <div className="pronunciation-container">
+    <div className="pronunciation-container" style={style}>
       <h1 className="pronunciation-title">Pronunciation</h1>
 
       <p className="pronunciation-text">
         Just as every country has its own culture, accents also vary from
         country to country. Even within the same country, people from different
         regions may speak with different accents. Let's listen and get more
-        familiar with Aarav's accent!
+        familiar with Ethans's accent!
       </p>
 
       {loaded.error && (
@@ -350,8 +349,15 @@ const PronunciationExercise = ({ chapter }) => {
   );
 };
 
-const Pronunciation = ({ chapter }) => {
-  return <PronunciationExercise key={chapter} chapter={chapter} />;
+const Pronunciation = ({ chapter, background, mobileBackground }) => {
+  return (
+    <PronunciationExercise
+      key={chapter}
+      chapter={chapter}
+      background={background}
+      mobileBackground={mobileBackground}
+    />
+  );
 };
 
 export default Pronunciation;

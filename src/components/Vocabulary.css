@@ -1,34 +1,37 @@
-.words-container {
+.vocabulary-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   width: 100%;
   padding: 1rem;
-}
-
-/* Title and intro: fluid width instead of a fixed 44rem */
-.vocabulary-title,
-.vocabulary-paragraph {
-  box-sizing: border-box;
-  width: min(44rem, 100%);
-  border-right: 4px solid rgb(193, 193, 35);
-  padding: 0.625rem 1.5rem;
-  text-align: end;
+  background-image: var(--vocabulary-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
 .vocabulary-title {
   font-size: clamp(1.75rem, 6vw, 2.5rem);
+  width: 70%;
+  text-align: center;
+  color: rgb(232, 230, 230);
+  padding: 10px;
 }
 
 .vocabulary-paragraph {
   line-height: 1.8;
+  width: 70%;
+  color: rgb(232, 230, 230);
+  padding: 10px;
 }
 
 /* Exercises */
 .words-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   width: min(44rem, 100%);
   margin-top: 1.5rem;
@@ -41,7 +44,7 @@
 }
 
 /* One cell size for every word. Adjust --cell to fit your longest word. */
-.words-container {
+.vocabulary-container {
   --cell: clamp(1.4rem, 2.5vw, 2.75rem);
 }
 
@@ -65,12 +68,12 @@
   font-size: 1.125rem;
   font-weight: 600;
   text-align: center;
-  touch-action: manipulation;
+  border: 1px solid rgb(205, 204, 204);
+  outline: none
 }
 
-.letter-input:focus-visible {
-  outline: noner;
-  outline-offset: 1px;
+.letter-input:focus {
+  background-color: rgb(221, 219, 219);
 }
 
 .letter-input.correct {
@@ -85,8 +88,15 @@
   padding: 0 0.125rem;
 }
 
+@media (max-width: 768px) {
+  .vocabulary-container {
+    /* se não houver imagem mobile, usa a desktop */
+    background-image: var(--vocabulary-bg-mobile, var(--vocabulary-bg, none));
+  }
+}
+
 @media (max-width: 480px) {
-  .words-container {
+  .vocabulary-container {
     padding: 0.75rem;
   }
 
@@ -95,10 +105,7 @@
     padding: 0.5rem 1rem;
   }
 
-  .letter-input:focus-visible {
-    outline: 3px solid rgb(193, 193, 35);
-    outline-offset: 1px;
-  }
+
 
 
 

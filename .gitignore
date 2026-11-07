@@ -1,4 +1,5 @@
 # Logs
+credentials/google-credentials.json
 .env.local
 .env.production
 logs

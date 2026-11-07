@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getPronunciation } from "../services/wordService";
 import "./Reading.css";
 
-const ReadingContent = ({ chapter }) => {
+const ReadingContent = ({ chapter, background, mobileBackground }) => {
   const [data, setData] = useState({ title: "", text: "" });
 
   useEffect(() => {
@@ -25,8 +25,17 @@ const ReadingContent = ({ chapter }) => {
     };
   }, [chapter]);
 
+  // background e mobileBackground recebem o valor CSS completo,
+  // por exemplo: "url('/images/india.jpeg')"
+  const style = {};
+
+  if (background) style["--reading-bg"] = background;
+
+  // Sem imagem mobile, o CSS reaproveita a imagem desktop
+  if (mobileBackground) style["--reading-bg-mobile"] = mobileBackground;
+
   return (
-    <section className="reading-section">
+    <section className="reading-section" style={style}>
       <h1 className="reading-title">Reading</h1>
 
       <p className="reading-description">{data.title}</p>
@@ -34,8 +43,15 @@ const ReadingContent = ({ chapter }) => {
   );
 };
 
-const Reading = ({ chapter }) => {
-  return <ReadingContent key={chapter} chapter={chapter} />;
+const Reading = ({ chapter, background, mobileBackground }) => {
+  return (
+    <ReadingContent
+      key={chapter}
+      chapter={chapter}
+      background={background}
+      mobileBackground={mobileBackground}
+    />
+  );
 };
 
 export default Reading;

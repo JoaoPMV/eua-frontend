@@ -1,42 +1,50 @@
-.introduction {
+.introduction-container {
   --intro-ink: #1d2740;
   --intro-muted: #5d667a;
   --intro-rule: #e2a32f;
 
-  max-width: 44rem;
-  margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 3rem) 1.25rem;
+  width: 100%;
+  height: 100vh;
+
+
+  background-image: var(--introduction-bg, none);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: start;
+  padding-top: 3rem;
 }
 
-/* "Chapter One:" fica como linha de apoio; o nome do capítulo é o destaque */
-.introduction .introduction__title {
+.introduction-data {
+  width: 70%;
+}
+
+.introduction-title {
   margin: 0 0 1.5rem;
-  font-size: 1.05rem;
+  font-size: 2rem;
   font-weight: 500;
   line-height: 1.3;
-  color: var(--intro-muted);
+  text-align: center;
+  color: whitesmoke;
 }
 
-.introduction .introduction__title span {
+.introduction-title span {
   display: block;
   margin-top: 0.2rem;
   font-size: clamp(2rem, 6vw, 3.25rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--intro-ink);
 }
 
-/* Texto com largura de leitura confortável (~65 caracteres por linha) */
-.introduction .introduction__text {
-  max-width: 65ch;
-  margin: 0;
-  padding-left: 1.25rem;
-  border-left: 4px solid var(--intro-rule);
+.introduction-text {
+
+  color: rgb(202, 200, 200);
   font-size: clamp(1rem, 2.4vw, 1.125rem);
-  line-height: 1.75;
-  color: var(--intro-ink);
-  text-wrap: pretty;
+  line-height: 2;
+  text-align: center;
 }
 
 @media (prefers-color-scheme: dark) {

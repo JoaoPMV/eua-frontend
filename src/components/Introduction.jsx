@@ -60,7 +60,7 @@ const formatChapterLabel = (chapterId) => {
     : `Chapter ${number}`;
 };
 
-const IntroductionContent = ({ chapter }) => {
+const IntroductionContent = ({ chapter, background, mobileBackground }) => {
   const [data, setData] = useState({ title: "", description: "" });
 
   useEffect(() => {
@@ -83,18 +83,36 @@ const IntroductionContent = ({ chapter }) => {
     };
   }, [chapter]);
 
+  // background e mobileBackground recebem o valor CSS completo,
+  // por exemplo: "url('/images/india.jpeg')"
+  const style = {};
+
+  if (background) style["--introduction-bg"] = background;
+
+  // Sem imagem mobile, o CSS reaproveita a imagem desktop
+  if (mobileBackground) style["--introduction-bg-mobile"] = mobileBackground;
+
   return (
-    <section className="introduction">
-      <h1 className="introduction__title">
-        {formatChapterLabel(chapter)}: <span>{data.title}</span>
-      </h1>
-      <p className="introduction__text">{data.description}</p>
+    <section className="introduction-container" style={style}>
+      <div className="introduction-data">
+        <h1 className="introduction-title">
+          {formatChapterLabel(chapter)}: <span>{data.title}</span>
+        </h1>
+        <p className="introduction-text">{data.description}</p>
+      </div>
     </section>
   );
 };
 
-const Introduction = ({ chapter }) => {
-  return <IntroductionContent key={chapter} chapter={chapter} />;
+const Introduction = ({ chapter, background, mobileBackground }) => {
+  return (
+    <IntroductionContent
+      key={chapter}
+      chapter={chapter}
+      background={background}
+      mobileBackground={mobileBackground}
+    />
+  );
 };
 
 export default Introduction;
