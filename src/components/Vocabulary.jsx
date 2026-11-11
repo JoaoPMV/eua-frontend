@@ -25,10 +25,8 @@ const VocabularyExercise = ({ chapter, background, mobileBackground }) => {
     getPronunciation(chapter)
       .then((data) => {
         if (cancelled) return;
-        setWords(
-          Array.isArray(data?.vocabularyWords) ? data.vocabularyWords : [],
-        );
-        setDescription(data?.vocabularyDescription || "");
+        setWords(Array.isArray(data?.vocabulary) ? data.vocabulary : []);
+        setDescription(data?.vocabularyIntro || "");
       })
       .catch((error) => {
         if (cancelled) return;
@@ -76,15 +74,15 @@ const VocabularyExercise = ({ chapter, background, mobileBackground }) => {
   // por exemplo: "url('/images/india.jpeg')"
   const style = {};
 
-  if (background) style["--vocabulary-bg"] = background;
+  if (background) style["--image-bg"] = background;
 
   // Sem imagem mobile, o CSS reaproveita a imagem desktop
-  if (mobileBackground) style["--vocabulary-bg-mobile"] = mobileBackground;
+  if (mobileBackground) style["--image-mobile"] = mobileBackground;
 
   return (
-    <div className="vocabulary-container" style={style}>
-      <h1 className="vocabulary-title">Vocabulary</h1>
-      <p className="vocabulary-paragraph">{description}</p>
+    <div className="page-container" style={style}>
+      <h1 className="page-title">Vocabulary</h1>
+      <p className="page-description">{description}</p>
       <div className="words-list">
         {words.map((word, wordIndex) => (
           <div className="words-box" key={`${word}-${wordIndex}`}>

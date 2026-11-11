@@ -1,61 +1,13 @@
-.reading-section {
-  --reading-ink: #1d2740;
-  --reading-muted: #5d667a;
-  --reading-surface: #f6f8fc;
-  --reading-border: #dde3ef;
-  --reading-accent: #2563eb;
-  --reading-accent-hover: #1d4ed8;
-
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100vh;
-  padding: 10px 30px;
-  color: var(--reading-ink);
-  background-image: var(--reading-bg, none);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.reading-title {
-  text-align: center;
-  width: 100%;
-  font-size: clamp(2rem, 6vw, 3.25rem);
-  font-weight: 800;
-  color: white;
-  width: 70%;
-  padding: 10px;
-}
-
-.reading-description {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.8;
+.description-audio {
   width: 100%;
   text-align: justify;
-  color: white;
-  width: 70%;
-  padding: 10px;
-}
-
-.reading-section .description-audio {
-  width: 100%;
-  text-align: justify;
-
   margin: 0;
   font-size: 1.1rem;
   line-height: 1.8;
   overflow-wrap: break-word;
   border-left: 4px solid rgb(198, 52, 52);
   padding-left: 15px;
-
 }
-
-
 
 @media (prefers-color-scheme: dark) {
   .reading-section {
@@ -75,7 +27,7 @@
     background-image: var(--reading-bg-mobile, var(--reading-bg, none));
   }
 
-  /* gap already handles spacing; default h1 margins waste space on mobile */
+
   .reading-title,
   .reading-description {
     margin: 0;

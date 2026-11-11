@@ -41,10 +41,10 @@
 
 .pronunciation-box {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  justify-content: center;
+  grid-template-columns: repeat(3, 1fr);
   flex-wrap: wrap;
   gap: .5rem;
+  width: 55%;
 }
 
 .word-audio {
@@ -116,7 +116,6 @@
 .pronunciation-word {
   margin: 0;
   min-width: 0;
-  font-size: 1.15rem;
   font-weight: 600;
   line-height: 1.2;
   color: var(--wa-ink);
@@ -131,68 +130,11 @@
   color: var(--wa-error, #b91c1c);
 }
 
-.pronunciation-container {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100vh;
-  padding: 40px 40px;
-  display: flex;
-  flex-direction: column;
-  text-align: end;
-  align-items: center;
-  background-image: var(--pronunciation-bg, none);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.pronunciation-title {
-  --pt-ink: #1d2740;
-  --pt-mark: #a7e3d9;
-  display: inline-block;
-  font-size: clamp(2rem, 6vw, 3.25rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  padding: 20px 30px;
-  color: rgb(219, 218, 218);
-}
-
-.pronunciation-text {
-  --pt-mark: #a7e3d9;
-  line-height: 2;
-  margin: 0;
-  padding: 20px 30px;
-  width: 70%;
-  color: rgb(220, 218, 218);
-}
 
 @media (prefers-color-scheme: dark) {
   .pronunciation-title {
     --pt-ink: #eef1f8;
     --pt-mark: rgba(94, 234, 212, 0.35);
-  }
-}
-
-@keyframes word-audio-wave {
-
-  0%,
-  100% {
-    transform: scaleY(0.25);
-  }
-
-  50% {
-    transform: scaleY(1);
-  }
-}
-
-@keyframes word-audio-pulse {
-  from {
-    box-shadow: 0 0 0 0 var(--wa-ring);
-  }
-
-  to {
-    box-shadow: 0 0 0 12px rgba(15, 118, 110, 0);
   }
 }
 

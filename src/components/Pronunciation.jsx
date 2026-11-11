@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { API_URL, getPronunciation } from "../services/wordService";
 import "./Pronunciation.css";
+import "./Pages.css";
 
 let stopActivePlayback = null;
 
@@ -39,7 +40,7 @@ const WordAudio = ({ audioData, word, wordIndex }) => {
     }
 
     const item = audioData?.words?.[wordIndex];
-    const audioUrl = audioData?.audioUrl;
+    const audioUrl = audioData?.audio;
 
     if (!audioUrl || !item) {
       setError("Trecho de áudio não encontrado nos dados do capítulo.");
@@ -281,8 +282,8 @@ const PronunciationExercise = ({ chapter, background, mobileBackground }) => {
 
         const words = Array.isArray(data)
           ? data
-          : Array.isArray(data?.pronunciationWords)
-            ? data.pronunciationWords
+          : Array.isArray(data?.pronunciation)
+            ? data.pronunciation
             : [];
 
         setLoaded({
@@ -308,26 +309,20 @@ const PronunciationExercise = ({ chapter, background, mobileBackground }) => {
   }, [chapter]);
 
   const words = Array.isArray(loaded.data?.words) ? loaded.data.words : [];
+  const intro = loaded.data?.pronunciationIntro || "";
 
-  // background e mobileBackground recebem o valor CSS completo,
-  // por exemplo: "url('/images/india.jpeg')"
   const style = {};
 
-  if (background) style["--pronunciation-bg"] = background;
+  if (background) style["--image-bg"] = background;
 
   // Sem imagem mobile, o CSS reaproveita a imagem desktop
-  if (mobileBackground) style["--pronunciation-bg-mobile"] = mobileBackground;
+  if (mobileBackground) style["--image-bg-mobile"] = mobileBackground;
 
   return (
-    <div className="pronunciation-container" style={style}>
-      <h1 className="pronunciation-title">Pronunciation</h1>
+    <div className="page-container" style={style}>
+      <h1 className="page-title">Pronunciation</h1>
 
-      <p className="pronunciation-text">
-        Just as every country has its own culture, accents also vary from
-        country to country. Even within the same country, people from different
-        regions may speak with different accents. Let's listen and get more
-        familiar with Ethans's accent!
-      </p>
+      <p className="page-description">{intro}</p>
 
       {loaded.error && (
         <span className="word-audio__error" role="alert">

@@ -70,8 +70,8 @@ const IntroductionContent = ({ chapter, background, mobileBackground }) => {
       .then((result) => {
         if (cancelled) return;
         setData({
-          title: result?.chapterTitle || "",
-          description: result?.IntroductionDescription || "",
+          title: result?.title || "",
+          description: result?.intro || "",
         });
       })
       .catch((error) => {
@@ -87,19 +87,17 @@ const IntroductionContent = ({ chapter, background, mobileBackground }) => {
   // por exemplo: "url('/images/india.jpeg')"
   const style = {};
 
-  if (background) style["--introduction-bg"] = background;
+  if (background) style["--image-bg"] = background;
 
   // Sem imagem mobile, o CSS reaproveita a imagem desktop
-  if (mobileBackground) style["--introduction-bg-mobile"] = mobileBackground;
+  if (mobileBackground) style["--image-bg-mobile"] = mobileBackground;
 
   return (
-    <section className="introduction-container" style={style}>
-      <div className="introduction-data">
-        <h1 className="introduction-title">
-          {formatChapterLabel(chapter)}: <span>{data.title}</span>
-        </h1>
-        <p className="introduction-text">{data.description}</p>
-      </div>
+    <section className="page-container" style={style}>
+      <h1 className="introduction-title">
+        {formatChapterLabel(chapter)}: <span>{data.title}</span>
+      </h1>
+      <p className="introduction-text">{data.description}</p>
     </section>
   );
 };
