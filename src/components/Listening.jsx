@@ -4,7 +4,7 @@ import { getPronunciation } from "../services/wordService";
 import "./Listening.css";
 import "./Pages.css";
 
-const CharacterCard = ({ chapter, alt, background, mobileBackground }) => {
+const Listening = ({ chapter, alt, background, mobileBackground }) => {
   const audioRef = useRef(null);
   const [data, setData] = useState({
     audioUrl: "",
@@ -52,13 +52,10 @@ const CharacterCard = ({ chapter, alt, background, mobileBackground }) => {
     }
   };
 
-  // background e mobileBackground recebem o valor CSS completo,
-  // por exemplo: "url('/images/india.jpeg')"
   const style = {};
 
   if (background) style["--image-bg"] = background;
 
-  // Sem imagem mobile, o CSS reaproveita a imagem desktop
   if (mobileBackground) style["--image-bg-mobile"] = mobileBackground;
 
   return (
@@ -101,4 +98,4 @@ const CharacterCard = ({ chapter, alt, background, mobileBackground }) => {
   );
 };
 
-export default CharacterCard;
+export default Listening;

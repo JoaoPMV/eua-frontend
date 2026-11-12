@@ -21,17 +21,18 @@ const Home = () => {
           background="url('/images/eua-chapter-02.jpeg')"
           mobileBackground="url('/images/india-mobile.jpeg')"
         />
-        <Pronunciation
-          chapter="chapter-02"
-          background="url('/images/eua-chapter-02.jpeg')"
-          mobileBackground="url('/images/india-mobile.jpeg')"
-        />
         <Reading
           chapter="chapter-02"
           background="url('/images/eua-chapter-02.jpeg')"
           mobileBackground="url('/images/india-mobile.jpeg')"
         />
+
         <Vocabulary
+          chapter="chapter-02"
+          background="url('/images/eua-chapter-02.jpeg')"
+          mobileBackground="url('/images/india-mobile.jpeg')"
+        />
+        <Pronunciation
           chapter="chapter-02"
           background="url('/images/eua-chapter-02.jpeg')"
           mobileBackground="url('/images/india-mobile.jpeg')"
