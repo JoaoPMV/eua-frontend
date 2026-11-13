@@ -22,8 +22,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 41%;
-  left: 35%;
+  top: 38%;
+  left: 28%;
   width: 18vw;
   height: 20%;
   background: white;
@@ -79,7 +79,6 @@
     width: 100%;
   }
 
-  /* Mantém o balão sobre a imagem, no mesmo canto superior esquerdo */
   .speech-bubble {
     top: 15%;
     left: 4%;
